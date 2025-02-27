@@ -1,0 +1,40 @@
+name: Build Debian packages
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  build-debian-stable:
+    runs-on: ubuntu-latest
+    container: debian:stable
+
+    steps:
+      - run: |
+          apt-get -y update
+          apt-get -y upgrade
+          apt-get -y install git
+
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - run: |
+          apt-get -y install build-essential wget
+          for n in amd64:64 arm64:arm64 armhf:arm; do
+            arch=`echo $n | cut -d: -f1`
+            type=`echo $n | cut -d: -f2`
+            echo Downloading CEF source for $arch
+            mkdir $arch
+            url=https://cef-builds.spotifycdn.com/cef_binary_117.2.5%2Bgda4c36a%2Bchromium-117.0.5938.152_linux${type}_minimal.tar.bz2
+            wget -qO- $url | bunzip2 | tar -xf- -C $arch --strip-components=1
+          done
+          apt-get -y build-dep .
+          dpkg-buildpackage --build=binary --no-sign
+
+      - uses: svenstaro/upload-release-action@v2
+        with:
+          file_glob: true
+          file: ../*.deb
+          overwrite: true
