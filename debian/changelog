@@ -1,3 +1,9 @@
+chromium-embedded-117 (117.2.5+gda4c36a-13) unstable; urgency=medium
+
+  * Add workflow to build Debian packages
+
+ -- Dimitry Ishenko <dimitry.ishenko@gmail.com>  Thu, 27 Feb 2025 14:23:13 -0500
+
 chromium-embedded-117 (117.2.5+gda4c36a-12) unstable; urgency=medium
 
   * Fix target visibility
