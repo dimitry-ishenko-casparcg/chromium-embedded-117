@@ -14,14 +14,11 @@ jobs:
       - run: |
           apt-get -y update
           apt-get -y upgrade
-          apt-get -y install git
+          apt-get -y install build-essential git wget
 
       - uses: actions/checkout@v4
-        with:
-          submodules: recursive
 
       - run: |
-          apt-get -y install build-essential wget
           for n in amd64:64 arm64:arm64 armhf:arm; do
             arch=`echo $n | cut -d: -f1`
             type=`echo $n | cut -d: -f2`
