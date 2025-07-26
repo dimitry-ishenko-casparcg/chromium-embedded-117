@@ -1,3 +1,11 @@
+chromium-embedded-117 (117.2.5+gda4c36a-15) unstable; urgency=medium
+
+  * README.md: consistent instructions
+  * Revert "Ignore .github dir"
+  * d/rules: dwz fails for armhf on Launchpad
+
+ -- Dimitry Ishenko <dimitry.ishenko@gmail.com>  Sat, 26 Jul 2025 16:23:16 -0400
+
 chromium-embedded-117 (117.2.5+gda4c36a-14) unstable; urgency=medium
 
   * Tweak build workflow
