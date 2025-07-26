@@ -17,6 +17,8 @@ jobs:
           apt-get -y install build-essential git wget
 
       - uses: actions/checkout@v4
+        with:
+          submodules: recursive
 
       - run: |
           for n in amd64:64 arm64:arm64 armhf:arm; do
