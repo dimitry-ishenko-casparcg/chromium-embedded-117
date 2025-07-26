@@ -17,8 +17,9 @@ p=chromium-embedded-117
 v=117.2.5+gda4c36a
 
 # Download CEF tarballs
-for a in amd64 arm64 armhf; do
-    b=$a b=${b#amd} b=${b%hf}
+for n in amd64:64 arm64:arm64 armhf:arm; do
+    a=`echo $n | cut -d: -f1`
+    b=`echo $n | cut -d: -f2`
     wget -cO ${p}_${v}.orig-${a}.tar.bz2 \
         https://cef-builds.spotifycdn.com/cef_binary_${v}+chromium-117.0.5938.152_linux${b}_minimal.tar.bz2
 done
@@ -30,7 +31,8 @@ git ls-files -z :^debian | tar -caf ../${p}_${v}.orig.tar.gz --null -T-
 
 # Unpack CEF tarballs
 for a in amd64 arm64 armhf; do
-    tar -xj --one-top-level=$a --strip-components=1 -f ../${p}_${v}.orig-${a}.tar.bz2
+    mkdir $a
+    tar -xjC $a --strip-components=1 -f ../${p}_${v}.orig-${a}.tar.bz2
 done
 ```
 
