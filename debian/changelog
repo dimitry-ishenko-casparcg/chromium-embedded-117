@@ -1,3 +1,12 @@
+chromium-embedded-117 (117.2.5+gda4c36a-14) unstable; urgency=medium
+
+  * Tweak build workflow
+  * Drop support for Ubuntu Focal
+  * Ignore .github dir
+  * build-debian: simplify
+
+ -- Dimitry Ishenko <dimitry.ishenko@gmail.com>  Sat, 26 Jul 2025 15:24:08 -0400
+
 chromium-embedded-117 (117.2.5+gda4c36a-13) unstable; urgency=medium
 
   * Add workflow to build Debian packages
